@@ -65,13 +65,13 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 main-content">
                     <div class="xlg-margin"></div>{{-- space --}}
-					<!-- @include('home.hot-items') -->
+					@include('home.hot-items')
                     <div class="xlg-margin"></div>{{-- Space --}}
-                    <!-- @include('home.latest-items') -->
+                    @include('home.latest-items')
                 </div>{{-- End .col-md-12 --}}
             </div>{{-- End .row --}}
-            <div class="lg-margin"></div>{{-- Space --}}
-			<!-- @include('home.vendor-list') -->
+            <!-- <div class="lg-margin"></div>{{-- Space --}}
+			@include('home.vendor-list') -->
 		</div>{{-- End .col-md-12 --}}
 	</div>{{-- End .row --}}
 </div>{{-- End .container --}}

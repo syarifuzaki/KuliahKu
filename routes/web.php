@@ -38,6 +38,8 @@ Route::group(['middleware' => 'checkuser'], function () {
     Route::post('/transaksi/proses', 'HomeController@storeReceipt')->middleware(['checkuser']);
     // cetak laporan
     Route::get('koperasi/transaksi/cetak', 'ReceiptController@cetak')->middleware('role:admin_koperasi');
+    // Donate
+    Route::get('/donate', 'HomeController@donate')->middleware(['checkuser']);
 });
 
 // masuk ke dashboard (VueJS magic)
