@@ -107,7 +107,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-success waves-effect" @click="activateConfirmation(row.id)" title="Verifikasi" v-if="row.status == 'processed'">
@@ -183,7 +183,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.customer_id" id="customer_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="customer in customers" :value="customer.id">{{ customer.user.name }}</option>
+                                                <option v-for="customer in customers" :value="customer.id"  :key="customer.id">{{ customer.user.name }}</option>
                                             </select>
                                             <label id="customer_id-error" class="error" for="customer_id">{{ error(errors.customer_id) }}</label>
                                             <label class="error" v-if="arrayLength(customers) == 0">Maaf, nasabah tidak ditemukan. Silahkan tambah nasabah di menu Manajemen Nasabah.</label>
@@ -199,7 +199,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.code_id" id="code_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="code in codes" :value="code.id">{{ code.name }}</option>
+                                                <option v-for="code in codes" :value="code.id"  :key="code.id">{{ code.name }}</option>
                                             </select>
                                             <label id="code_id-error" class="error" for="code_id">{{ error(errors.code_id) }}</label>
                                             <label class="error" v-if="arrayLength(codes) == 0">Maaf, kode transaksi tidak ditemukan. Silahkan hubungi admin untuk proses selanjutnya.</label>

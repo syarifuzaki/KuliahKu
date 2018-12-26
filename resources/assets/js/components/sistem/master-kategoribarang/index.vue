@@ -89,7 +89,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary waves-effect" @click="edit(row.id)" title="Edit">

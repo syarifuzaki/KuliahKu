@@ -74,15 +74,17 @@
                                             <th width="5%" class="text-center">No.</th>
                                             <th>Nama</th>
                                             <th>Keterangan</th>
+                                            <th width="13%">Batas Transaksi</th>
                                             <th width="13%">Tipe Transaksi</th>
                                             <th width="10%">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data" :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>{{ row.name }}</td>
                                             <td>{{ row.description }}</td>
+                                            <td>{{ rupiah(row.batas) }}</td>
                                             <td v-html="labelType(row.type)"></td>
                                             <td v-html="labelActive(row.active)"></td>
                                         </tr>
@@ -113,6 +115,8 @@
 </template>
 
 <script>
+import accounting from 'accounting'
+
 export default {
     data () {
         return {
@@ -149,6 +153,21 @@ export default {
                 this.$Progress.fail()
                 console.error(errors)
             })
+        },
+
+        rupiah(value) {
+            var options = {
+                symbol : 'Rp',
+                decimal : ',',
+                thousand: '.',
+                precision : 2,
+                format: {
+                    pos : "%s %v",
+                    neg : "%s (%v)",
+                    zero: "%s  -"
+                }
+            }
+            return accounting.formatMoney(value, options)
         },
 
         labelType(value) {

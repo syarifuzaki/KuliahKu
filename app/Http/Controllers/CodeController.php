@@ -70,6 +70,7 @@ class CodeController extends Controller
             $code->description  = $request['description'];
             $code->type         = $request['type'];
             $code->active       = $request['active'];
+            $code->batas       = $request['batas'];
 
             // if success
             if ($code->save()) {
@@ -105,6 +106,7 @@ class CodeController extends Controller
             $code->description  = $request['description'];
             $code->type         = $request['type'];
             $code->active       = $request['active'];
+            $code->batas       = $request['batas'];
 
             // if success
             if ($code->save()) {

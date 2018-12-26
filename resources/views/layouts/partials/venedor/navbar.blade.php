@@ -28,7 +28,6 @@
                         </li>
                         <li><a href="{{ url('tentang') }}">Tentang</a></li>
                         <li><a href="{{ url('kontak') }}">Kontak</a></li>
-                        <li><a href="{{ url('donate') }}">Donasi</a></li>
                     </ul>
                 </nav>
             </div>{{-- End .col-md-12 --}}

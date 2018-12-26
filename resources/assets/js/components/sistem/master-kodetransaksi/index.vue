@@ -79,12 +79,13 @@
                                             <th width="13%">Opsi</th>
                                             <th>Nama</th>
                                             <th>Keterangan</th>
+                                            <th width="13%">Batas Transaksi</th>
                                             <th width="13%">Tipe Transaksi</th>
                                             <th width="10%">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data" :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary waves-effect" @click="edit(row.id)" title="Edit">
@@ -96,6 +97,7 @@
                                             </td>
                                             <td>{{ row.name }}</td>
                                             <td>{{ row.description }}</td>
+                                            <td>{{ rupiah(row.batas) }}</td>
                                             <td v-html="labelType(row.type)"></td>
                                             <td v-html="labelActive(row.active)"></td>
                                         </tr>
@@ -190,6 +192,22 @@
                                         <label id="type-error" class="error" for="type">{{ error(errors.type) }}</label>
                                     </div>
                                 </div>
+                               
+                                <!-- type -->
+                                <div class="row clearfix">
+                                    <div class="col-xs-4 form-control-label">
+                                        <label for="batas">Batas Transaksi *</label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Rp</span>
+                                            <div class="form-line">
+                                            <input type="number" min="0" id="batas" class="form-control" v-model="state.batas">
+                                            </div>
+                                        </div>
+                                        <label id="batas-error" class="batas" for="batas">{{ error(errors.batas) }}</label>
+                                    </div>
+                                </div>
                                 <!-- active -->
                                 <div class="row clearfix">
                                     <div class="col-xs-4 form-control-label">
@@ -228,6 +246,8 @@
 </template>
 
 <script>
+import accounting from 'accounting'
+
 export default {
     data () {
         return {
@@ -247,7 +267,8 @@ export default {
                 name: null,
                 description: null,
                 type: null,
-                active: null
+                active: null,
+                batas:null
             },
             params: {
                 limit: '5',
@@ -298,6 +319,7 @@ export default {
                 this.state.description  = response.data.description
                 this.state.type         = response.data.type
                 this.state.active       = response.data.active
+                this.state.batas       = response.data.batas
                 this.$Progress.finish()
             }).catch(errors => {
                 this.$Progress.fail()
@@ -415,6 +437,7 @@ export default {
             this.state.description  = null
             this.state.type         = null
             this.state.active       = null
+            this.state.batas       = null
             this.errors             = []
             this.response           = null
         },
@@ -429,6 +452,21 @@ export default {
             return value == true
                     ? '<span class="label label-success">Aktif</span>'
                     : '<span class="label label-warning">Tidak aktif</span>'
+        },
+
+        rupiah(value) {
+            var options = {
+                symbol : 'Rp',
+                decimal : ',',
+                thousand: '.',
+                precision : 2,
+                format: {
+                    pos : "%s %v",
+                    neg : "%s (%v)",
+                    zero: "%s  -"
+                }
+            }
+            return accounting.formatMoney(value, options)
         },
 
         notify() {

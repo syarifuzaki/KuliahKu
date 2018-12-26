@@ -14,7 +14,7 @@
                     <!-- Header -->
                     <div class="header">
                         <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-4 col-xs-12">
+                            <div class="col-lg-10 col-md-8 col-sm-4 col-xs-12">
                                 <!-- Judul konten -->
                                 <h2>
                                     Riwayat Transaksi
@@ -25,9 +25,9 @@
                                 <button type="button" class="btn btn-block btn-info waves-effect" @click="getAllData(api.index)">TAMPILKAN SEMUA</button>
                             </div>
                             <!-- Tombol tambah -->
-                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                            <!-- <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
                                 <button type="button" class="btn btn-block btn-success waves-effect" @click="create">TAMBAH</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- Body -->
@@ -106,7 +106,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data "  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <!-- <td>
                                                 <button type="button" class="btn btn-danger waves-effect" @click="destroyConfirmation(row.id)" title="Hapus" v-if="row.code_id == 3">
@@ -119,7 +119,7 @@
                                             <td>{{ rupiah(row.value) }}</td>
                                             <td>{{ momentDate(row.created_at) }}</td>
                                             <td>{{ row.code.name }}</td>
-                                            <td v-html="labelActive(true)"></td>
+                                            <td v-html="labelActive(row.status)"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -178,7 +178,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.customer_id" id="customer_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="customer in customers" :value="customer.id">{{ customer.user.name }}</option>
+                                                <option v-for="customer in customers" :value="customer.id"  :key="customer.id">{{ customer.user.name }}</option>
                                             </select>
                                             <label id="customer_id-error" class="error" for="customer_id">{{ error(errors.customer_id) }}</label>
                                             <label class="error" v-if="arrayLength(customers) == 0">Maaf, nasabah tidak ditemukan. Silahkan tambah nasabah di menu Manajemen Nasabah.</label>
@@ -194,7 +194,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.code_id" id="code_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="code in codes" :value="code.id">{{ code.name }}</option>
+                                                <option v-for="code in codes" :value="code.id"  :key="code.id">{{ code.name }}</option>
                                             </select>
                                             <label id="code_id-error" class="error" for="code_id">{{ error(errors.code_id) }}</label>
                                             <label class="error" v-if="arrayLength(codes) == 0">Maaf, kode transaksi tidak ditemukan. Silahkan hubungi admin untuk proses selanjutnya.</label>
@@ -399,9 +399,9 @@ export default {
         },
 
         labelActive(value) {
-            return value == true
-                    ? '<span class="label label-success">Sedang diproses</span>'
-                    : '<span class="label label-warning">Terverifikasi</span>'
+            return value == 'verified'
+                    ? '<span class="label label-success">Terverifikasi</span>'
+                    : '<span class="label label-warning">Sedang diproses</span>'
         },
 
         momentDate(value) {

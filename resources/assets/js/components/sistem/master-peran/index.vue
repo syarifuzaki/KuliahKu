@@ -41,7 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows">
+                                        <tr v-for="(row, index) in rows"  :key="row.id">
                                             <td class="text-center">{{ index+1 }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary waves-effect" @click="edit(row.id)" title="Edit">

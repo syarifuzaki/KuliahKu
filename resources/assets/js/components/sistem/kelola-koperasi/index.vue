@@ -85,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <router-link :to="{ name: 'kelola-koperasi-show', params: { id: row.id }}" tag="button" class="btn btn-info waves-effect" title="Lihat">
@@ -167,7 +167,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.user_id" id="user_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="user in users" :value="user.id">{{ user.id }} ({{ user.name }})</option>
+                                                <option v-for="user in users" :value="user.id"  :key="user.id">{{ user.id }} ({{ user.name }})</option>
                                             </select>
                                             <label id="user_id-error" class="error" for="user_id">{{ error(errors.user_id) }}</label>
                                             <label class="error" v-if="arrayLength(users) == 0">Maaf, daftar pemilik kosong. Silahkan tambah pemilik di menu Daftar User.</label>

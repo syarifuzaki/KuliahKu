@@ -228,7 +228,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr v-for="(row, index) in customer.transactions">
+                                                            <tr v-for="(row, index) in customer.transactions" :key="row.id">
                                                                 <td class="text-center">{{ index+1 }}</td>
                                                                 <td>{{ row.id }}</td>
                                                                 <td>{{ row.code_id }}</td>

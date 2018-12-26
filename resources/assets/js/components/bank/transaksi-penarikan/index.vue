@@ -106,7 +106,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data" :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-danger waves-effect" @click="destroyConfirmation(row.id)" title="Hapus" v-if="row.code_id != 3">
@@ -177,7 +177,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.customer_id" id="customer_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="customer in customers" :value="customer.id">{{ customer.user.name }}</option>
+                                                <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.user.name }}</option>
                                             </select>
                                             <label id="customer_id-error" class="error" for="customer_id">{{ error(errors.customer_id) }}</label>
                                             <label class="error" v-if="arrayLength(customers) == 0">Maaf, nasabah tidak ditemukan. Silahkan tambah nasabah di menu Manajemen Nasabah.</label>
@@ -193,7 +193,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.code_id" id="code_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="code in codes" :value="code.id">{{ code.name }}</option>
+                                                <option v-for="code in codes" :value="code.id" :key="code.id">{{ code.name }}</option>
                                             </select>
                                             <label id="code_id-error" class="error" for="code_id">{{ error(errors.code_id) }}</label>
                                             <label class="error" v-if="arrayLength(codes) == 0">Maaf, kode transaksi tidak ditemukan. Silahkan hubungi admin untuk proses selanjutnya.</label>
@@ -275,12 +275,25 @@ export default {
         }
     },
 
+    // data2(){
+    //     return{
+    //         api:{
+    //             codes: 'api/bank/kode/getPenarikan'
+    //         },
+    //         limit:{
+    //             batas: null
+    //         }
+    //     }
+    // },
+
     mounted () {
         this.params.date = this.momentToday('YYYY-MM-DD')
         this.getData(this.api.index)
     },
 
     methods: {
+        
+
         getAllData(url) {
             this.params.keyword = null
             this.params.date = null
@@ -339,6 +352,18 @@ export default {
                 console.error(errors)
             })
         },
+
+        // getCodes2(url) {
+        //     this.$Progress.start()
+        //     axios.get(url)
+        //     .then(response => {
+        //         this.codes = response.data2
+        //         this.$Progress.finish()
+        //     }).catch(errors => {
+        //         this.$Progress.fail()
+        //         console.error(errors)
+        //     })
+        // },
 
         showDetail(id) {
             this.$Progress.start()
@@ -462,6 +487,10 @@ export default {
             }
             return accounting.formatMoney(value, options)
         },
+
+        // show(){
+        //     this.getCodes2(this.api.codes)
+        // },
 
         momentToday(format) {
             return moment().format(format)

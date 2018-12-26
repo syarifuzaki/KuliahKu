@@ -105,7 +105,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-danger waves-effect" @click="destroyConfirmation(row.id)" title="Hapus">
@@ -176,7 +176,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.good_id" id="good_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="good in goods" :value="good.id">{{ good.name }}</option>
+                                                <option v-for="good in goods" :value="good.id"  :key="good.id">{{ good.name }}</option>
                                             </select>
                                             <label id="good_id-error" class="error" for="good_id">{{ error(errors.good_id) }}</label>
                                             <label class="error" v-if="arrayLength(goods) == 0">Maaf, barang tidak ditemukan. Silahkan tambah barang di menu Master Barang.</label>

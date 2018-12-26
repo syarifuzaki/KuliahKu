@@ -225,7 +225,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr v-for="(role, index) in user.roles">
+                                                            <tr v-for="(role, index) in user.roles"  :key="role.id">
                                                                 <td class="text-center">{{ index+1 }}</td>
                                                                 <td>{{ role.name }}</td>
                                                                 <td>{{ role.display_name }}</td>

@@ -128,7 +128,7 @@
                                                         <div class="form-group">
                                                             <select class="form-control show-tick" v-model="good.category_id" id="category_id">
                                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                                <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                                                                <option v-for="category in categories" :value="category.id"  :key="category.id">{{ category.name }}</option>
                                                             </select>
                                                             <label id="category_id-error" class="error" for="category_id">{{ error(errors.category_id) }}</label>
                                                             <label class="error" v-if="arrayLength(categories) == 0">Maaf, kategori barang tidak ditemukan. Silahkan hubungi admin untuk informasi lebih lanjut.</label>
@@ -261,7 +261,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr v-for="(stock, index) in good.stocks">
+                                                            <tr v-for="(stock, index) in good.stocks"  :key="stock.id">
                                                                 <td class="text-center">{{ index+1 }}</td>
                                                                 <td>{{ stock.id }}</td>
                                                                 <td>{{ stock.value }}</td>

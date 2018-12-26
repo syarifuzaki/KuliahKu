@@ -84,7 +84,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <router-link :to="{ name: 'daftaruser-show', params: { id: row.id }}" tag="button" class="btn btn-info waves-effect" title="Lihat">
@@ -108,7 +108,7 @@
                                             <td>{{ row.id }}</td>
                                             <td>{{ row.name }}</td>
                                             <td>
-                                                <span v-for="(role, index) in row.roles">
+                                                <span v-for="(role, index) in row.roles"  :key="index.id">
                                                     {{ role.display_name }}
                                                 </span>
                                             </td>
@@ -172,7 +172,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.role_id" required>
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="role in roles" :value="role.id" :disabled="role.id == 1">{{ role.display_name }}</option>
+                                                <option v-for="role in roles" :value="role.id" :disabled="role.id == 1"  :key="role.id">{{ role.display_name }}</option>
                                             </select>
                                             <label id="role_id-error" class="error" for="role_id">{{ error(errors.role_id) }}</label>
                                         </div>

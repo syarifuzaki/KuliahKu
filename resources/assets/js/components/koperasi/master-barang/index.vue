@@ -86,7 +86,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <router-link :to="{ name: 'master-barang-show', params: { id: row.id }}" tag="button" class="btn btn-info waves-effect" title="Lihat">
@@ -180,7 +180,7 @@
                                         <div class="form-group">
                                             <select class="form-control show-tick" v-model="state.category_id" id="category_id">
                                                 <option disabled value="null">-- Pilih salah satu --</option>
-                                                <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                                                <option v-for="category in categories" :value="category.id"  :key="category.id">{{ category.name }}</option>
                                             </select>
                                             <label id="category_id-error" class="error" for="category_id">{{ error(errors.category_id) }}</label>
                                             <label class="error" v-if="arrayLength(categories) == 0">Maaf, kategori barang tidak ditemukan. Silahkan hubungi admin untuk informasi lebih lanjut.</label>

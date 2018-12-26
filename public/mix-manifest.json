@@ -3,5 +3,7 @@
   "/js/koperasi.js": "/js/koperasi.js",
   "/js/bank.js": "/js/bank.js",
   "/js/sistem.js": "/js/sistem.js",
-  "/js/nasabah.js": "/js/nasabah.js"
+  "/js/nasabah.js": "/js/nasabah.js",
+  "/main.js": "/main.js",
+  "/css/app.css": "/css/app.css"
 }

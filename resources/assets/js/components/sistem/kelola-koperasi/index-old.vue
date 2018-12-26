@@ -49,7 +49,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data"  :key="row.id">
                                             <td>Opsi</td>
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>{{ row.id }}</td>
@@ -67,7 +67,7 @@
                                     <button type="button" class="btn bg-indigo waves-effect" @click.prevent="getIndex(rows.prev_page_url)" :disabled="!rows.prev_page_url">
                                         <i class="material-icons">fast_rewind</i>
                                     </button>
-                                    <div class="btn-group" role="group" v-for="n in rows.last_page">
+                                    <div class="btn-group" role="group" v-for="n in rows.last_page"  :key="n.id">
                                         <button type="button" class="btn bg-indigo waves-effect" @click.prevent="getIndex(paginationPath(n))" :disabled="n==rows.current_page">{{ n }}</button>
                                     </div>
                                     <button type="button" class="btn bg-indigo waves-effect" @click.prevent="getIndex(rows.next_page_url)" :disabled="!rows.next_page_url">

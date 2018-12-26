@@ -85,7 +85,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(row, index) in rows.data">
+                                        <tr v-for="(row, index) in rows.data" :key="row.id">
                                             <td class="text-center">{{ rows.from+index }}</td>
                                             <td>
                                                 <router-link :to="{ name: 'master-nasabah-show', params: { id: row.id }}" tag="button" class="btn btn-info waves-effect" title="Lihat">
