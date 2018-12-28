@@ -13,3 +13,7 @@ Password : 123456
 Nasabah
 Username : nasabah
 Password : 123456
+
+Nasabah2
+Username : nasabah2
+Password : 123456
