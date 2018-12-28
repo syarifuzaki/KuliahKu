@@ -14,7 +14,6 @@ use App\Transaction;
 use App\Customer;
 use App\Stock;
 use App\Code;
-use App\Donate;
 
 class HomeController extends Controller
 {
@@ -138,9 +137,5 @@ class HomeController extends Controller
     public function contact()
     {
     	return view('contact.index');
-    }
-    public function donate()
-    {
-    	return view('donate.index');
     }
 }

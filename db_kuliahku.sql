@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2018 at 03:21 PM
+-- Generation Time: Dec 27, 2018 at 07:57 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -66,9 +66,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `unit`, `active`) VALUES
-(1, 'Makanan', 'kebutuhan makanan sehari-hari', 'pcs', 1),
-(2, 'Minuman', 'kebutuhan minuman sehari-hari', 'pcs', 1),
-(3, 'Alat tulis', 'kebutuhan alat tulis kantor dan yang semacamanya', 'pcs', 1);
+(1, 'Kerajinan', 'berbagai macam kerajinan', 'pcs', 1),
+(2, 'Barang Bekas', 'berbagai barang bekas', 'pcs', 1),
+(3, 'Merchandise', 'macam macam merchandise', 'pcs', 1);
 
 -- --------------------------------------------------------
 
@@ -142,30 +142,8 @@ INSERT INTO `detailreceipts` (`id`, `receipt_id`, `good_id`, `damount`, `dprice`
 (3, 3, 1, 1, '5000.00', '5000.00'),
 (4, 4, 3, 1, '2500.00', '2500.00'),
 (5, 5, 3, 1, '2500.00', '2500.00'),
-(6, 6, 1, 1, '5000.00', '5000.00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `donate`
---
-
-CREATE TABLE `donate` (
-  `name` varchar(20) NOT NULL,
-  `amount` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `donates`
---
-
-CREATE TABLE `donates` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(6, 6, 1, 1, '5000.00', '5000.00'),
+(7, 7, 1, 1, '5000.00', '5000.00');
 
 -- --------------------------------------------------------
 
@@ -180,7 +158,7 @@ CREATE TABLE `goods` (
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `priority` enum('high','standard') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'standard',
-  `price` decimal(8,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `picture` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -192,10 +170,8 @@ CREATE TABLE `goods` (
 --
 
 INSERT INTO `goods` (`id`, `koperasi_id`, `category_id`, `name`, `description`, `priority`, `price`, `picture`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'KOPR000001', 1, 'Roti', NULL, 'standard', '5000.00', 'http://localhost:8000/img/KOPR000001-1.jpg', 1, '2018-11-30 23:20:23', '2018-12-03 04:31:49'),
-(2, 'KOPR000001', 2, 'Teh Sisri', NULL, 'high', '500.00', '', 1, '2018-12-01 03:01:31', '2018-12-01 03:01:31'),
-(3, 'KOPR000001', 3, 'Pensil', NULL, 'standard', '2500.00', '', 1, '2018-12-01 03:39:53', '2018-12-01 03:39:53'),
-(4, 'KOPR000001', 3, 'Buku Tulis', 'buku tulis sinar dunia', 'high', '2500.00', 'http://localhost:8000/img/KOPR000001-4.jpg', 1, '2018-12-02 14:40:31', '2018-12-17 04:26:56');
+(1, 'KOPR000001', 1, 'Buket Bunga', 'Buket Bunga Wisuda', 'standard', '5000.00', 'http://localhost:8000/img/KOPR000001-1.jpg', 1, '2018-11-30 23:20:23', '2018-12-27 07:05:53'),
+(4, 'KOPR000001', 3, 'Boneka Beruang', 'Boneka Beruang Wisuda', 'high', '24987.00', 'http://localhost:8000/img/KOPR000001-4.jpg', 1, '2018-12-02 14:40:31', '2018-12-27 07:07:22');
 
 -- --------------------------------------------------------
 
@@ -280,7 +256,8 @@ INSERT INTO `receipts` (`id`, `koperasi_id`, `customer_id`, `status`, `created_a
 (3, 'KOPR000001', 1, 'verified', '2018-12-01 01:39:36', '2018-12-26 05:37:15'),
 (4, 'KOPR000001', 1, 'verified', '2018-12-01 03:43:02', '2018-12-22 22:42:58'),
 (5, 'KOPR000001', 1, 'verified', '2018-12-03 03:33:35', '2018-12-22 22:42:54'),
-(6, 'KOPR000001', 1, 'verified', '2018-12-07 09:03:11', '2018-12-26 12:33:14');
+(6, 'KOPR000001', 1, 'verified', '2018-12-07 09:03:11', '2018-12-26 12:33:14'),
+(7, 'KOPR000001', 1, 'processed', '2018-12-27 07:36:01', '2018-12-27 07:36:01');
 
 -- --------------------------------------------------------
 
@@ -353,7 +330,9 @@ INSERT INTO `stocks` (`id`, `good_id`, `user_id`, `value`, `created_at`, `update
 (2, 3, 'usahaku', 10, '2018-12-01 03:42:25', '2018-12-01 03:42:25'),
 (5, 3, 'nasabah', -1, '2018-12-01 03:43:02', '2018-12-01 03:43:02'),
 (6, 3, 'nasabah', -1, '2018-12-03 03:33:36', '2018-12-03 03:33:36'),
-(7, 1, 'nasabah', -1, '2018-12-07 09:03:12', '2018-12-07 09:03:12');
+(7, 1, 'nasabah', -1, '2018-12-07 09:03:12', '2018-12-07 09:03:12'),
+(8, 4, 'usahaku', 10, '2018-12-27 07:10:31', '2018-12-27 07:10:31'),
+(9, 1, 'nasabah', -1, '2018-12-27 07:36:01', '2018-12-27 07:36:01');
 
 -- --------------------------------------------------------
 
@@ -385,7 +364,8 @@ INSERT INTO `transactions` (`id`, `code_id`, `customer_id`, `value`, `created_at
 (8, 3, 1, '-2500.00', '2018-12-03 03:33:36', '2018-12-03 03:33:36'),
 (9, 3, 1, '-5000.00', '2018-12-07 09:03:12', '2018-12-07 09:03:12'),
 (10, 1, 1, '10000.00', '2018-12-26 11:52:33', '2018-12-26 11:52:33'),
-(11, 2, 1, '-1000.00', '2018-12-26 14:48:03', '2018-12-26 14:48:03');
+(11, 2, 1, '-1000.00', '2018-12-26 14:48:03', '2018-12-26 14:48:03'),
+(12, 3, 1, '-5000.00', '2018-12-27 07:36:01', '2018-12-27 07:36:01');
 
 -- --------------------------------------------------------
 
@@ -413,11 +393,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `address`, `phone_number`, `gender`, `birth_date`, `password`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-('adminsistem', 'kuliahku@gmail.com', 'Admin Kuliah-Ku', 'Surakarta', '', 'male', '1996-09-11', '$2y$10$2Zlbx.mVnaX5z9avi.HcXuEObp47AkLa59hohPh4a7zoXMazkHLwi', 1, 'dQaD1Max2X50L3LLHYQ0zU62tp0LIdiWahJkRktUk11VcjbIGNrizVQuR0JS', '2018-11-30 22:46:32', '2018-11-30 22:46:32'),
-('bank', 'bank@gmail.com', 'Admin Koperasi-Ku', NULL, '', NULL, NULL, '$2y$10$Hr8/GOV0OhS/6kNnT0YkHO4uGKALZnIVExuGQ1hoUMl/OB9gb6CWe', 1, 'WdwPezioiXHlfDthOho19LWRzBG3VbqR009N6lkEMnOpuNXI9iMvzwmnTjnK', '2018-11-30 22:49:09', '2018-11-30 22:49:09'),
-('nasabah', 'nasabah@gmail.com', 'Nasabah', NULL, '', NULL, NULL, '$2y$10$wXmPINUX6SkPWX.PG0WMIO7jGnWcH8UPU81vGmGq16hf9FraEM5/i', 1, 'jTj1SOY97erz0e0eWzw2mNnIsWBfiaRli6FmvBRFWADI0LCAVhG4ZgEcuGuw', '2018-11-30 23:43:29', '2018-11-30 23:43:29'),
+('adminsistem', 'kuliahku@gmail.com', 'Admin Kuliah-Ku', 'Surakarta', '', 'male', '1996-09-11', '$2y$10$2Zlbx.mVnaX5z9avi.HcXuEObp47AkLa59hohPh4a7zoXMazkHLwi', 1, 'CXpvChHiq8Z1ltebiLkST4PSnAoGtWiKgdu3m8YjSSdqzAlIbRn2SJDzYztf', '2018-11-30 22:46:32', '2018-11-30 22:46:32'),
+('bank', 'bank@gmail.com', 'Admin Koperasi-Ku', NULL, '', NULL, NULL, '$2y$10$Hr8/GOV0OhS/6kNnT0YkHO4uGKALZnIVExuGQ1hoUMl/OB9gb6CWe', 1, 'qrBGHuLrDrlub3IaHFc4LZYWyOKf9Ts1YTfWzCo1tJHoA6e6y1eqSCwpeF2j', '2018-11-30 22:49:09', '2018-11-30 22:49:09'),
+('nasabah', 'nasabah@gmail.com', 'Nasabah', NULL, '', NULL, NULL, '$2y$10$wXmPINUX6SkPWX.PG0WMIO7jGnWcH8UPU81vGmGq16hf9FraEM5/i', 1, 'JkubOu3PJmUK834R2TyTypcHeD3NHf613uJ006p9pbz8b09cXhXIOfmSXWrh', '2018-11-30 23:43:29', '2018-11-30 23:43:29'),
 ('nasabah2', 'nasabah2@gmail.com', 'Nasabah2', NULL, '', NULL, NULL, '$2y$10$fblboIjPJX00eYatjDa//.CMk8xau/rmvRtaeRrOVAXeoQ1TsoGbi', 1, 'x3vvF1BRQdGBJnZXbGLVvmtaPBkDoCkfi7gmROFWVtLzVBBmpowreXJzNLDI', '2018-12-01 03:45:44', '2018-12-01 03:45:44'),
-('usahaku', 'usahaku@gmail.com', 'Admin Usaha-Ku', NULL, '', NULL, NULL, '$2y$10$Q8kumHi3WMw6tmP0mFakT.y/PA/RSMMwrHWn6xn5XVuWarZvJpj7C', 1, 'zaNcdvAD1BqOSgs66fDhjgIP7p4vqWAnKa3yZmBPN2XC9qVsFS58EYraYrDk', '2018-11-30 22:48:14', '2018-11-30 22:48:14');
+('usahaku', 'usahaku@gmail.com', 'Admin Usaha-Ku', NULL, '', NULL, NULL, '$2y$10$Q8kumHi3WMw6tmP0mFakT.y/PA/RSMMwrHWn6xn5XVuWarZvJpj7C', 1, '4wXyjgSw3Udzm9ujD0a7BSfE7GgEFq5NHtSg708TJ41wvdOfcxZUgyXBgdut', '2018-11-30 22:48:14', '2018-11-30 22:48:14');
 
 --
 -- Indexes for dumped tables
@@ -453,12 +433,6 @@ ALTER TABLE `customers`
 -- Indexes for table `detailreceipts`
 --
 ALTER TABLE `detailreceipts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `donates`
---
-ALTER TABLE `donates`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -550,13 +524,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `detailreceipts`
 --
 ALTER TABLE `detailreceipts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `donates`
---
-ALTER TABLE `donates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `goods`
@@ -574,7 +542,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `receipts`
 --
 ALTER TABLE `receipts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -586,13 +554,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

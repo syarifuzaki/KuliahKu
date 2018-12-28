@@ -270,6 +270,7 @@ export default {
             },
             customers: null,
             codes: null,
+            status: null,
             // 
             response: null,
             modalTitle: null,

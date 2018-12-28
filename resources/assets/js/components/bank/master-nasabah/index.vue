@@ -150,7 +150,7 @@
                                         <!-- user_id -->
                                         <div class="row clearfix">
                                             <div class="col-xs-4 form-control-label">
-                                                <label for="user_id">Username (ID) *</label>
+                                                <label for="user_id">NIM *</label>
                                             </div>
                                             <div class="col-xs-8">
                                                 <div class="form-group">

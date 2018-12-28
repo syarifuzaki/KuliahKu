@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Receipt extends Model
 {
-    protected $fillable  = ['id', 'customer_id'];
+    protected $fillable  = ['id', 'customer_id', 'status'];
 
     protected $appends = ['total'];
 
@@ -19,6 +19,8 @@ class Receipt extends Model
     {
         return $this->belongsTo('App\Customer');
     }
+
+    
 
     public function koperasi()
     {

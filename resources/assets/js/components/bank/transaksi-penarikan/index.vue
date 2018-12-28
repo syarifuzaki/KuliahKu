@@ -198,6 +198,7 @@
                                             <label id="code_id-error" class="error" for="code_id">{{ error(errors.code_id) }}</label>
                                             <label class="error" v-if="arrayLength(codes) == 0">Maaf, kode transaksi tidak ditemukan. Silahkan hubungi admin untuk proses selanjutnya.</label>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <!-- value -->
@@ -214,6 +215,7 @@
                                             <label id="value-error" class="error" for="value">{{ error(errors.value) }}</label>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -274,17 +276,6 @@ export default {
             },
         }
     },
-
-    // data2(){
-    //     return{
-    //         api:{
-    //             codes: 'api/bank/kode/getPenarikan'
-    //         },
-    //         limit:{
-    //             batas: null
-    //         }
-    //     }
-    // },
 
     mounted () {
         this.params.date = this.momentToday('YYYY-MM-DD')
@@ -353,17 +344,6 @@ export default {
             })
         },
 
-        // getCodes2(url) {
-        //     this.$Progress.start()
-        //     axios.get(url)
-        //     .then(response => {
-        //         this.codes = response.data2
-        //         this.$Progress.finish()
-        //     }).catch(errors => {
-        //         this.$Progress.fail()
-        //         console.error(errors)
-        //     })
-        // },
 
         showDetail(id) {
             this.$Progress.start()
@@ -488,10 +468,6 @@ export default {
             return accounting.formatMoney(value, options)
         },
 
-        // show(){
-        //     this.getCodes2(this.api.codes)
-        // },
-
         momentToday(format) {
             return moment().format(format)
         },
@@ -526,6 +502,8 @@ export default {
                 '</div>'
             });
         }
-    }
+    },
+
+    
 }
 </script>

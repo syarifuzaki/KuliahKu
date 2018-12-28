@@ -103,7 +103,7 @@
                                                 </button>
                                             </td>
                                             <td>{{ row.name }}</td>
-                                            <td>{{ rupiah(row.balance) }}</td>
+                                            <td>{{ rupiah(row.price) }}</td>
                                             <td>{{ row.stock }}</td>
                                             <td>{{ momentDate(row.created_at) }}</td>
                                             <td v-html="labelPriority(row.priority)"></td>

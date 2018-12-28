@@ -39,7 +39,7 @@ class TransactionController extends Controller
             return response()->json(['id' => $transaction->id+1]);
         }
     }
-
+    
     public function getHistory()
     {
         $transactions = Transaction::with(['customer' => function ($q) {
@@ -57,6 +57,25 @@ class TransactionController extends Controller
 
         return $transactions->toJson();
     }
+
+    public function getHistorybackup()
+    {
+        $transactions = Transaction::with(['customer' => function ($q) {
+                            $q->where('user_id', auth()->user()->id)->select('id', 'user_id')->with(['user' => function ($q) {
+                                $q->select('id', 'name');
+                            }]);
+                        }])->with(['code' => function ($q) {
+                            $q->select('id', 'name');
+                        }])->filter()->latest()->paginate(request('limit', 5));
+
+        // menambahkan request lain seperti keyword
+        if (request()->all()) {
+            $transactions->appends(request()->all());
+        }
+
+        return $transactions->toJson();
+    }
+
 
     public function show($id)
     {
@@ -122,4 +141,5 @@ class TransactionController extends Controller
             ]);
         }
     }
+
 }

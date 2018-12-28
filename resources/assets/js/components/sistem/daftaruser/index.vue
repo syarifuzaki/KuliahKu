@@ -152,7 +152,7 @@
                                 <!-- id -->
                                 <div class="row clearfix">
                                     <div class="col-xs-4 form-control-label">
-                                        <label for="id">Username (ID) *</label>
+                                        <label for="id">NIM *</label>
                                     </div>
                                     <div class="col-xs-8">
                                         <div class="form-group">

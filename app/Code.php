@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Code extends Model
 {
-    protected $fillable  = ['id', 'name', 'description', 'active', 'limit'];
+    protected $fillable  = ['id', 'name', 'description', 'active', 'batas'];
     public $timestamps = false;
 
     public function transaction()
@@ -20,8 +20,8 @@ class Code extends Model
         if ($keyword) {
             $query->where('id', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('name', 'LIKE', '%'.$keyword.'%')
-                ->orWhere('description', 'LIKE', '%'.$keyword.'%');
-                // ->orWhere('limit', 'LIKE', '%'.$keyword.'%');
+                ->orWhere('description', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('batas', 'LIKE', '%'.$keyword.'%');
         }
         return $query;
     }

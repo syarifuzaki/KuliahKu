@@ -3,11 +3,11 @@ Username : adminsistem
 Password : sistem
 
 Admin Koperasi
-Username : koperasi
+Username : bank
 Password : 123456
 
-Admin Bank
-Username : bank
+Usahaku
+Username : usahaku
 Password : 123456
 
 Nasabah
